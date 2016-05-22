@@ -46,19 +46,17 @@ namespace HumanResources
         {
             IList<Employee> employees = new List<Employee>();
             using (DbConnection connection = GetConnection())
-            using (DbCommand command = connection.CreateCommand())
             {
-                DbDataReader reader = null;
-                try
+                DbCommand command = connection.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "select * " +
+                                      "from EMPLOYEES " +
+                                      "order by LAST_NAME";
+                command.Connection = connection;
+                connection.Open();
+                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
                 {
-                    command.CommandType = CommandType.Text;
-                    command.CommandText = "select * " +
-                                          "from EMPLOYEES " +
-                                          "order by LAST_NAME";
-                    command.Connection = connection;
-                    connection.Open();
-                    reader = command.ExecuteReader();
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         employees.Add(new Employee
                         {
@@ -66,17 +64,6 @@ namespace HumanResources
                             LastName = reader.GetString(reader.GetOrdinal("LAST_NAME")),
                             FirstName = reader.GetString(reader.GetOrdinal("FIRST_NAME"))
                         });
-                    }
-                }
-                catch
-                {
-                    throw;
-                }
-                finally
-                {
-                    if (!reader.IsClosed)
-                    {
-                        reader.Close();
                     }
                 }
             }
