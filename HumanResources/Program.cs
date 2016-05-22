@@ -3,20 +3,27 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Common;
 
 namespace HumanResources
 {
     class Program
     {
-        private string _connectionString = ConfigurationManager.ConnectionStrings["HumanResources"].ConnectionString;
 
         static void Main(string[] args)
         {
             Program program = new Program();
             program.PrintEmployees();
+        }
+
+        /// <summary>
+        /// Gets a new connection associated with the data store.
+        /// </summary>
+        /// <returns>A newly instantiated connection.</returns>
+        public DbConnection GetConnection()
+        {
+            string cs = ConfigurationManager.ConnectionStrings["HumanResources"].ConnectionString;
+            return new OracleConnection(cs);
         }
 
         /// <summary>
@@ -38,10 +45,10 @@ namespace HumanResources
         private IList<Employee> GetEmployees()
         {
             IList<Employee> employees = new List<Employee>();
-            using (OracleConnection connection = new OracleConnection(_connectionString))
-            using (OracleCommand command = new OracleCommand())
+            using (DbConnection connection = GetConnection())
+            using (DbCommand command = connection.CreateCommand())
             {
-                OracleDataReader reader = null;
+                DbDataReader reader = null;
                 try
                 {
                     command.CommandType = CommandType.Text;
