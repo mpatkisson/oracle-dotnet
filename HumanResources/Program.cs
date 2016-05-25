@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
+using System.Linq;
 
 namespace HumanResources
 {
@@ -14,16 +15,6 @@ namespace HumanResources
         {
             Program program = new Program();
             program.PrintEmployees();
-        }
-
-        /// <summary>
-        /// Gets a new connection associated with the data store.
-        /// </summary>
-        /// <returns>A newly instantiated connection.</returns>
-        public DbConnection GetConnection()
-        {
-            string cs = ConfigurationManager.ConnectionStrings["HumanResources"].ConnectionString;
-            return new OracleConnection(cs);
         }
 
         /// <summary>
@@ -45,27 +36,14 @@ namespace HumanResources
         private IList<Employee> GetEmployees()
         {
             IList<Employee> employees = new List<Employee>();
-            using (DbConnection connection = GetConnection())
+            using (HumanResourcesContext context = new HumanResourcesContext())
             {
-                DbCommand command = connection.CreateCommand();
-                command.CommandType = CommandType.Text;
-                command.CommandText = "select * " +
-                                      "from EMPLOYEES " +
-                                      "order by LAST_NAME";
-                command.Connection = connection;
-                connection.Open();
-                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
-                {
-                    while (reader.Read())
-                    {
-                        employees.Add(new Employee
-                        {
-                            ID = reader.GetInt32(reader.GetOrdinal("EMPLOYEE_ID")),
-                            LastName = reader.GetString(reader.GetOrdinal("LAST_NAME")),
-                            FirstName = reader.GetString(reader.GetOrdinal("FIRST_NAME"))
-                        });
-                    }
-                }
+                string sql = @"select EMPLOYEE_ID ID
+                                     ,LAST_NAME LastName
+                                     ,FIRST_NAME FirstName
+                             from EMPLOYEES
+                             order by LAST_NAME, FIRST_NAME";
+                employees = context.Database.SqlQuery<Employee>(sql).ToList();
             }
             return employees;
         }
