@@ -38,11 +38,12 @@ namespace HumanResources
             IList<Employee> employees = new List<Employee>();
             using (HumanResourcesContext context = new HumanResourcesContext())
             {
-                var query = from e in context.Employees
-                            where e.LastName.StartsWith("A")
-                            orderby e.LastName, e.FirstName
-                            select e;
-                employees = query.ToList();
+                string sql = @"select EMPLOYEE_ID ID
+                                     ,LAST_NAME LastName
+                                     ,FIRST_NAME FirstName
+                             from EMPLOYEES
+                             order by LAST_NAME, FIRST_NAME";
+                employees = context.Database.SqlQuery<Employee>(sql).ToList();
             }
             return employees;
         }
