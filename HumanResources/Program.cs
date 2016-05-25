@@ -39,6 +39,7 @@ namespace HumanResources
             using (HumanResourcesContext context = new HumanResourcesContext())
             {
                 var query = from e in context.Employees
+                            where e.LastName.StartsWith("A")
                             orderby e.LastName, e.FirstName
                             select e;
                 employees = query.ToList();
