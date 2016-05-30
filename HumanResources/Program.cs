@@ -13,12 +13,9 @@ namespace HumanResources
 
         static void Main(string[] args)
         {
-            using (HumanResourcesContext context = new HumanResourcesContext())
-            {
-                EmployeeService service = new EmployeeService(context);
-                List<Employee> employees = service.GetAll();
-                PrintEmployees(employees);
-            }
+            EmployeeService service = new EmployeeService();
+            List<Employee> employees = service.GetAll();
+            PrintEmployees(employees);
         }
 
         /// <summary>
