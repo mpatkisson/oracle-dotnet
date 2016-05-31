@@ -15,9 +15,9 @@ namespace HumanResources.EntityFramework
         {
             using (HumanResourcesContext context = new HumanResourcesContext())
             {
-                string sql = @"select EMPLOYEE_ID ID
-                                 ,LAST_NAME LastName
-                                 ,FIRST_NAME FirstName
+                string sql = @"select EMPLOYEE_ID
+                                 ,LAST_NAME
+                                 ,FIRST_NAME
                            from EMPLOYEES
                            order by LAST_NAME, FIRST_NAME";
                 return context.Database.SqlQuery<Employee>(sql).ToList();
