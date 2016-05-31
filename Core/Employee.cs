@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HumanResources
+namespace HumanResources.Core
 {
     public class Employee
     {
