@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using HumanResources.Core;
-using HumanResources.Oracle;
+using HumanResources.EntityFramework;
 
 namespace HumanResources.App
 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using HumanResources.Core;
 
-namespace HumanResources
+namespace HumanResources.EntityFramework
 {
     public class EmployeeService
     {

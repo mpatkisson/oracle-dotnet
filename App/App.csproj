@@ -55,6 +55,10 @@
       <Project>{60f7e47a-513b-4407-8b4b-cd9f91a2f091}</Project>
       <Name>Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EntityFramework\EntityFramework.csproj">
+      <Project>{1c81c439-6f8f-42f6-82f3-e9f23788e60f}</Project>
+      <Name>EntityFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Oracle\Oracle.csproj">
       <Project>{c86605eb-82b7-4eb1-853d-6c7a8da1493d}</Project>
       <Name>Oracle</Name>

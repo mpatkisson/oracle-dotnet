@@ -38,18 +38,34 @@ namespace HumanResources.Oracle
                 connection.Open();
                 using (DbDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
                 {
-                    while (reader.Read())
-                    {
-                        employees.Add(new Employee
-                        {
-                            ID = reader.GetInt32(reader.GetOrdinal("EMPLOYEE_ID")),
-                            LastName = reader.GetString(reader.GetOrdinal("LAST_NAME")),
-                            FirstName = reader.GetString(reader.GetOrdinal("FIRST_NAME"))
-                        });
-                    }
+                    employees = ToEntities(reader);
                 }
             }
             return employees;
+        }
+
+        protected IList<Employee> ToEntities(DbDataReader reader)
+        {
+            List<Employee> employees = new List<Employee>();
+            if (reader != null)
+            {
+                while (reader.Read())
+                {
+                    Employee employee = ToEntity(reader);
+                    employees.Add(employee);
+                }
+            }
+            return employees;
+        }
+
+        protected Employee ToEntity(DbDataReader reader)
+        {
+            return new Employee
+            {
+                ID = reader.GetValue<int>("EMPLOYEE_ID"),
+                LastName = reader.GetValue<string>("LAST_NAME"),
+                FirstName = reader.GetValue<string>("FIRST_NAME")
+            };
         }
     }
 }
