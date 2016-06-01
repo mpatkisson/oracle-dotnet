@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework", "EntityFramework\EntityFramework.csproj", "{1C81C439-6F8F-42F6-82F3-E9F23788E60F}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{3A0797BB-0C06-4792-816E-599BDB94A845}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oracle", "Oracle\Oracle.csproj", "{C86605EB-82B7-4EB1-853D-6C7A8DA1493D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Featherweight", "Featherweight\Featherweight.csproj", "{EE2BD119-3844-476F-B30E-91AD833739F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C86605EB-82B7-4EB1-853D-6C7A8DA1493D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C86605EB-82B7-4EB1-853D-6C7A8DA1493D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C86605EB-82B7-4EB1-853D-6C7A8DA1493D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE2BD119-3844-476F-B30E-91AD833739F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE2BD119-3844-476F-B30E-91AD833739F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE2BD119-3844-476F-B30E-91AD833739F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE2BD119-3844-476F-B30E-91AD833739F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

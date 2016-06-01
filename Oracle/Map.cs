@@ -15,6 +15,5 @@ namespace HumanResources.Oracle
 
         public virtual string DefaultOrderingClause { get; }
 
-
     }
 }
